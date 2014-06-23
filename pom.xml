@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>lubin</groupId>
-	<artifactId>NettyRPC</artifactId>
+	<artifactId>myTable</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>NettyRPC</name>
+	<name>myTable</name>
 	
 	<dependencies>
 		<dependency>
@@ -38,5 +38,12 @@
 			<artifactId>config</artifactId>
 			<version>1.2.0</version>
 		</dependency>
+	    <dependency>
+			<groupId>org.fusesource.leveldbjni</groupId>
+			<artifactId>leveldbjni-all</artifactId>
+			<version>1.7</version>
+	   </dependency>
+	   
+	   
 	</dependencies>
 </project>
