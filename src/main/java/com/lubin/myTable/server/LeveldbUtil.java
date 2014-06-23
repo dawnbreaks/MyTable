@@ -43,4 +43,8 @@ public class LeveldbUtil {
 	public byte[] get(byte[] key){
 		return db.get(key);
 	}
+	
+	public void delete(byte[] key){
+		db.delete(key);
+	}
 }

@@ -29,6 +29,11 @@ public class TestMyTableClient {
 			 public void run() {
 				 
 				 IMyTable client = MyTableClient.getInstance();
+				 byte[] key = bytes("hello world");
+				 byte[] value = bytes("leveldb");
+				 client.put(key, value);
+				 client.get(key);
+				 client.delete(key);
 					long start = System.currentTimeMillis();
 					for (int i = 0; i < requestNum; i++) {
 						client.put(bytes("hello world!" +i), bytes("hello world!" + i));

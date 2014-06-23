@@ -14,4 +14,10 @@ public class MyTableObj implements IMyTable {
 		LeveldbUtil.getInstance().put(key, value);
 		return true;
 	}
+
+	@Override
+	public boolean delete(byte[] key) {
+		LeveldbUtil.getInstance().delete(key);
+		return true;
+	}
 }

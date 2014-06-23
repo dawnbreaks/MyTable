@@ -13,9 +13,17 @@ Features
   
 Simple tutorial
 ========
+1. Start com.lubin.myTable.server.MyTableServer
 
-For more information please refer to example in the src/test folder.
-
+2. Create a client and try basic operation...
+```java
+	IMyTable client = MyTableClient.getInstance();
+	byte[] key = bytes("hello world");
+	byte[] value = bytes("leveldb");
+	client.put(key, value);
+	client.get(key);
+	client.delete(key);
+```
 
 Build
 ========
