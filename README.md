@@ -1,7 +1,7 @@
 myTable
 ========
 
-Yet another NoSql database based on [leveldb].
+Yet another NoSql database based on leveldb.
 
 
 Features
