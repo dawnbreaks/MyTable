@@ -13,7 +13,10 @@ Features
   
 Simple tutorial
 ========
-1. Start com.lubin.myTable.server.MyTableServer
+1. Start MyTable server 
+```java
+	com.lubin.myTable.server.MyTableServer
+```
 
 2. Create a client and try basic operation...
 ```java
