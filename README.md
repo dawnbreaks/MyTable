@@ -1,4 +1,4 @@
-myTable
+MyTable
 ========
 
 Yet another NoSql database based on leveldb.
