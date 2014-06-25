@@ -14,6 +14,9 @@ import org.iq80.leveldb.Options;
 import org.iq80.leveldb.ReadOptions;
 import org.iq80.leveldb.WriteOptions;
 
+import com.lubin.rpc.server.RPCServer;
+import com.typesafe.config.Config;
+
 public class LeveldbUtil {
 	
 	private static LeveldbUtil instance;
@@ -27,25 +30,46 @@ public class LeveldbUtil {
 		if (instance == null){
 			synchronized (LeveldbUtil.class){
 				if (instance == null){
-					instance = new LeveldbUtil("default");
+					instance = new LeveldbUtil();
 				}
 			}
 		}
 		return instance;
 	}
 
-	LeveldbUtil(String dbName){
-		try {
-			Options options = new Options()
-				.createIfMissing(true)
-				.cacheSize(1000*1000*500)
-				.writeBufferSize(8 << 20);
-			
+	/*
+leveldb {
+	dataDir = "default"
+	createIfMissing = true
+    cacheSize = 500
+    writeBufferSize = 16
+    WriteOptions {
+    	sync = false
+    }
+     WriteOptions {
+    	sync = false
+    }
+    ReadOptions {
+    	fillCache = true
+    	verifyChecksums = true
+    }
+}
 
-			writeOptions = new WriteOptions().sync(false);
-			readOptions = new ReadOptions().fillCache(true).verifyChecksums(true);
+	 */
+	LeveldbUtil(){
+		try {
+			Config config = RPCServer.getConfig();
+			Options options = new Options()
+				.createIfMissing(config.getBoolean("leveldb.createIfMissing"))
+				.cacheSize(config.getInt("leveldb.cacheSize")*1000*1000)
+				.writeBufferSize(config.getInt("leveldb.writeBufferSize")*1000*1000);
+
+			writeOptions = new WriteOptions().sync(config.getBoolean("leveldb.WriteOptions.sync"));
+			readOptions = new ReadOptions()
+				.fillCache(config.getBoolean("leveldb.ReadOptions.fillCache"))
+				.verifyChecksums(config.getBoolean("leveldb.ReadOptions.verifyChecksums"));
 	        
-			db = factory.open(new File(dbName), options);
+			db = factory.open(new File(config.getString("leveldb.dataDir")), options);
 			
 		} catch (IOException e) {
 			e.printStackTrace();

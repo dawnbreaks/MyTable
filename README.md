@@ -47,6 +47,56 @@ key=b	value=myTable:b
 key=c	value=myTable:c
 ```
 
+3. Config file for myTable server
+```javascript
+server {
+	
+	port = 9090
+	backlog = 1000
+	
+	async = false	//handling request in business logic thread pool
+	asyncThreadPoolSize = 4
+    ioThreadNum = 1   
+	
+	objects = [
+		com.lubin.myTable.obj.MyTableObj
+	]
+
+}
+
+leveldb {
+	dataDir = "default"
+	createIfMissing = true
+    cacheSize = 500	//500M
+    writeBufferSize = 16	//16M
+    WriteOptions {
+    	sync = false
+    }
+    ReadOptions {
+    	fillCache = true
+    	verifyChecksums = true
+    }
+}
+```
+
+
+4. Config file for myTable client
+```javascript
+client {
+
+	reconnInterval = 1000	//time interval(million second) for reconnecting to server
+	asyncThreadPoolSize = 1   //thread pool for excuting Async callback
+    ioThreadNum = 2   
+    serializer = 0      //0 kryo 1 json
+    objects = [ 
+		{ 
+			name = com.lubin.myTable.obj.IMyTable
+			servers ="127.0.0.1:9090"
+		}
+	]
+}
+```
+
 Build
 ========
 
