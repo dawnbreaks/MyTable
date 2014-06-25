@@ -4,6 +4,7 @@ import static org.fusesource.leveldbjni.JniDBFactory.bytes;
 
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.lubin.myTable.client.MyTableClient;
@@ -29,14 +30,10 @@ public class TestMyTableClient {
 			 public void run() {
 				 
 				 IMyTable client = MyTableClient.getInstance();
-				 byte[] key = bytes("hello world");
-				 byte[] value = bytes("leveldb");
-				 client.put(key, value);
-				 client.get(key);
-				 client.delete(key);
+
 					long start = System.currentTimeMillis();
 					for (int i = 0; i < requestNum; i++) {
-						client.put(bytes("hello world!" +i), bytes("hello world!" + i));
+						client.put("hello world!" +i, bytes("hello world!" + i));
 					}
 					totalTimeCosted.addAndGet(System.currentTimeMillis() - start);
 				}
