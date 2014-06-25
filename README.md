@@ -13,12 +13,12 @@ Features
   
 Simple tutorial
 ========
-1. Start MyTable server 
+####1. Start MyTable server 
 ```java
 	com.lubin.myTable.server.MyTableServer
 ```
 
-2. Create a client and try basic operation...
+####2. Create a client and try basic operation...
 ```java
 	 IMyTable client = MyTableClient.getInstance();
 	 String key = "hello";
@@ -47,7 +47,7 @@ key=b	value=myTable:b
 key=c	value=myTable:c
 ```
 
-3. Config file for myTable server
+####3. Config file for myTable server
 ```javascript
 server {
 	
@@ -80,7 +80,7 @@ leveldb {
 ```
 
 
-4. Config file for myTable client
+####4. Config file for myTable client
 ```javascript
 client {
 
