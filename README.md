@@ -24,7 +24,7 @@ Simple tutorial
 		 String key = "hello";
 		 client.put(key,  bytes("myTable"));
 		 byte[] value = client.get(key);
-		 System.out.println("key="+key+"	value=" + new String(value, "UTF-8")+"\n");
+		 System.out.println("key="+key+"	value=" + asString(value)+"\n");
 		 client.delete(key);
 		 
 		 
@@ -35,7 +35,7 @@ Simple tutorial
 		 client.put("e", bytes("myTable:"+ "e"));
 		 Map<String, byte[]> res = client.range("a", "d");
 		 for(Map.Entry<String, byte[]> entry :res.entrySet()){
-			 System.out.println("key="+entry.getKey() + "	value="+new String(entry.getValue(), "UTF-8"));
+			 System.out.println("key="+entry.getKey() + "	value="+asString(entry.getValue()));
 		 }
 ```
 output:
